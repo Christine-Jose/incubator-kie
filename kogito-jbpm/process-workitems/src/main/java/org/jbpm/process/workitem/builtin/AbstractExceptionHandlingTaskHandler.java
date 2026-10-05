@@ -59,6 +59,15 @@ public abstract class AbstractExceptionHandlingTaskHandler extends DefaultKogito
         return originalTaskHandler;
     }
 
+    /**
+     * Delegates to the wrapped handler so that the decorator registers under
+     * the same task name that the manager and BPMN engine use for lookup.
+     */
+    @Override
+    public String getName() {
+        return originalTaskHandler.getName();
+    }
+
     public abstract void handleException(KogitoWorkItemManager manager, KogitoWorkItemHandler originalTaskHandler, KogitoWorkItem workItem, WorkItemTransition transition, Throwable cause);
 
 }
